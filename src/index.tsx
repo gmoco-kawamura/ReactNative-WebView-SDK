@@ -1,26 +1,24 @@
-import {
-  requireNativeComponent,
-  UIManager,
-  Platform,
-  type ViewStyle,
-} from 'react-native';
+// index.tsx
+import { requireNativeComponent, type ViewStyle, type NativeSyntheticEvent } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'smaad-rn-sdk' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+type LoadFinishedEvent = NativeSyntheticEvent<{url: string}>;
+type LoadStartedEvent = NativeSyntheticEvent<{ url: string }>;
+type RedirectReceivedEvent = NativeSyntheticEvent<{ url: string }>;
+type LoadErrorEvent = NativeSyntheticEvent<{ url: string, error: string }>;
+type ClosePressedEvent = NativeSyntheticEvent<{ message: string }>;
 
-type SmaAdWebProps = {
-  color: string;
-  style: ViewStyle;
-};
+interface SmaAdWebViewProps {
+  zoneId: string;
+  userParameter: string;
+  style?: ViewStyle;
+  onLoadFinished?: (e: LoadFinishedEvent) => void;
+  onLoadStarted?: (e: LoadStartedEvent) => void;
+  onRedirectReceived?: (e: RedirectReceivedEvent) => void;
+  onLoadError?: (e: LoadErrorEvent) => void;
+  onClosePressed?: (e: ClosePressedEvent) => void;
+}
 
 const ComponentName = 'SmaAdWebView';
 
-export const SmaAdWebView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<SmaAdWebProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+const SmaAdWebView = requireNativeComponent<SmaAdWebViewProps>(ComponentName);
+export default SmaAdWebView;

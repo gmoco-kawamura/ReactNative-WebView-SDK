@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { StyleSheet, View } from 'react-native';
-import { SmaAdWebView } from 'smaad-rn-sdk';
+// import { SmaAdWebView } from 'smaad-rn-sdk';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <SmaAdWebView color="#32a852" style={styles.box} />
+      {/* <SmaAdWebView color="#32a852" style={styles.box} /> */}
     </View>
   );
 }
