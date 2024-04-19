@@ -15,7 +15,7 @@ import com.facebook.react.bridge.ReactContext;
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public static final String REACT_CLASS = "SmaAdWebViewManager";
-  private String source
+  private String source;
 
   @Override
   public String getName() {
@@ -29,7 +29,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   @ReactProp(name = "zoneId")
   public void setZoneId(SmaAdWebView view, String zoneId) {
-    this.zoneId = zoneId
+    this.zoneId = zoneId;
     
   }
 
