@@ -120,7 +120,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     view.loadUrl(url);
   }
 
-  private void sendEvent(ThemedReactContext context, SmaAdWebView webView, String eventName, WritableMap eventData) {
+  private void sendEvent(SmaAdWebView webView, ThemedReactContext context, String eventName, WritableMap eventData) {
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
         webView.getId(),
         eventName,
