@@ -132,7 +132,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
         webView.getId(),
         eventName,
-        eventData
+        params
     );
   }
 
