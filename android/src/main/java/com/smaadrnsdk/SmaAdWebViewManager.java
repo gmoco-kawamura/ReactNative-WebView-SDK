@@ -13,6 +13,14 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 
+
+import android.webkit.WebView;
+import android.webkit.PermissionRequest;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.uimanager.events.RCTEventEmitter;
+
+
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public static final String REACT_CLASS = "SmaAdWebView";
   private String source;
