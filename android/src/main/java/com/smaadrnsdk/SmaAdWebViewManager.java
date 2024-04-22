@@ -35,6 +35,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   @Override
   public SmaAdWebView createViewInstance(ThemedReactContext context) {
     // return new SmaAdWebView(context);
+    Activity activity = getActivityFromContext(context);
     SmaAdWebView webView = new SmaAdWebView(context);
     webView.setListener(activity, new SmaAdWebView.Listener(){
       @Override
@@ -101,6 +102,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
           );
       }
     });
+    return webView;
   }
 
   @ReactProp(name = "zoneId")
@@ -121,7 +123,6 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   }
 
   private void sendEvent(SmaAdWebView webView, ThemedReactContext context, String eventName, String eventData) {
-    ThemedReactContext context = (ThemedReactContext) webView.getContext();
     WritableMap params = Arguments.createMap();
     params.putString("data", eventData);
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
@@ -129,6 +130,16 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
         eventName,
         eventData
     );
+  }
+
+  private Activity getActivityFromContext(Context context) {
+    while (context instanceof ContextWrapper) {
+        if (context instanceof Activity) {
+            return (Activity) context;
+        }
+        context = ((ContextWrapper) context).getBaseContext();
+    }
+    return null;
   }
 }
 
