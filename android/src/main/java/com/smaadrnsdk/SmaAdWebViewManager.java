@@ -119,6 +119,14 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     String url = String.format("https://wall.smaad.net/wall/%s?u=%s", this.zoneId, this.userParameter);
     view.loadUrl(url);
   }
+
+  private void sendEvent(ThemedReactContext context, SmaAdWebView webView, String eventName, WritableMap eventData) {
+    context.getJSModule(RCTEventEmitter.class).receiveEvent(
+        webView.getId(),
+        eventName,
+        eventData
+    );
+  }
 }
 
 // public class SmaAdWebViewManager extends SimpleViewManager<View> {
