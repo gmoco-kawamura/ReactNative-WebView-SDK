@@ -63,9 +63,9 @@ class SmaAdWebView : WKWebView, WKNavigationDelegate, WKScriptMessageHandler {
         get { return _onClosePressed }
     }
 
-    override func didSetProps(_ changedProps: [String]!) {
-        initializeWebView()
-    }
+    // override func didSetProps(_ changedProps: [String]!) {
+    //     initializeWebView()
+    // }
 
     private func initializeWebView() {
         let baseUrl = "https://wall.smaad.net/wall/"
@@ -91,6 +91,7 @@ class SmaAdWebView : WKWebView, WKNavigationDelegate, WKScriptMessageHandler {
     }
 
     private func initialSmaadWebView(){
+        initializeWebView()
         addMessageHandler()
         updateUserAgent()
     }
