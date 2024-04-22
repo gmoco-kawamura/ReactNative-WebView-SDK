@@ -36,7 +36,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public SmaAdWebView createViewInstance(ThemedReactContext context) {
     // return new SmaAdWebView(context);
     SmaAdWebView webView = new SmaAdWebView(context);
-    webView.setListener(new SmaAdWebView.Listener(){
+    webView.setListener(activity, new SmaAdWebView.Listener(){
       @Override
       public void onLoadStart(String url) {
         sendEvent(webView, context, "onLoadStarted", url);
@@ -120,7 +120,10 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     view.loadUrl(url);
   }
 
-  private void sendEvent(SmaAdWebView webView, ThemedReactContext context, String eventName, WritableMap eventData) {
+  private void sendEvent(SmaAdWebView webView, ThemedReactContext context, String eventName, String eventData) {
+    ThemedReactContext context = (ThemedReactContext) webView.getContext();
+    WritableMap params = Arguments.createMap();
+    params.putString("data", eventData);
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
         webView.getId(),
         eventName,
