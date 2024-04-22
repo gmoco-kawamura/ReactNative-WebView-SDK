@@ -27,9 +27,9 @@ import android.content.ContextWrapper;
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public static final String REACT_CLASS = "SmaAdWebView";
-  private String source;
-  private String zoneId = "";
-  private String userParameter = "";
+  private String zoneId = null;
+  private String userParameter = null;
+  private SmaAdWebView webView = null;
 
   @Override
   public String getName() {
@@ -38,13 +38,12 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   @Override
   public SmaAdWebView createViewInstance(ThemedReactContext context) {
-    // return new SmaAdWebView(context);
     Activity activity = getActivityFromContext(context);
-    SmaAdWebView webView = new SmaAdWebView(context);
+    webView = new SmaAdWebView(context);
     webView.setListener(activity, new SmaAdWebView.Listener(){
       @Override
       public void onLoadStart(String url) {
-        sendEvent(webView, context, "onLoadStarted", url);
+        sendEvent(context, "onLoadStarted", url);
       }
 
       @Override
@@ -54,12 +53,12 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
       @Override
       public void shouldOverrideUrlLoading(String url) {
-          sendEvent(webView, context, "onRedirectReceived", url);
+          sendEvent(context, "onRedirectReceived", url);
       }
 
       @Override
       public void onLoadStop(String url) {
-          sendEvent(webView, context, "onLoadFinished", url);
+          sendEvent(context, "onLoadFinished", url);
       }
 
       @Override
@@ -78,7 +77,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
       @Override
       public void onWebViewClosed() {
-          sendEvent(webView, context, "onClosePressed", null);
+          sendEvent(context, "onClosePressed", null);
       }
 
       @Override
@@ -112,21 +111,29 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   @ReactProp(name = "zoneId")
   public void setZoneId(SmaAdWebView view, String zoneId) {
     this.zoneId = zoneId;
-    ShowWebView(view);
+    // ShowWebView(view);
+    updateWebView();
   }
 
   @ReactProp(name = "userParameter")
   public void setUserParameter(SmaAdWebView view, String userParameter) {
     this.userParameter = userParameter;
-    ShowWebView(view);
+    // ShowWebView(view);
+    updateWebView();
   }
 
-  public void ShowWebView(SmaAdWebView view){
+  private void updateWebView() {
+    if (zoneId != null && userParameter != null && webViewInstance != null) {
+      showWebView();
+    }
+  }
+
+  public void ShowWebView(){
     String url = String.format("https://wall.smaad.net/wall/%s?u=%s", this.zoneId, this.userParameter);
-    view.loadUrl(url);
+    webView.loadUrl(url);
   }
 
-  private void sendEvent(SmaAdWebView webView, ThemedReactContext context, String eventName, String eventData) {
+  private void sendEvent(ThemedReactContext context, String eventName, String eventData) {
     WritableMap params = Arguments.createMap();
     params.putString("data", eventData);
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
