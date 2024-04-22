@@ -128,7 +128,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     }
   }
 
-  public void ShowWebView(){
+  public void showWebView(){
     String url = String.format("https://wall.smaad.net/wall/%s?u=%s", this.zoneId, this.userParameter);
     webView.loadUrl(url);
   }
