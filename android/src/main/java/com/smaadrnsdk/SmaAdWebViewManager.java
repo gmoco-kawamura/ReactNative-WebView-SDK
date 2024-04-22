@@ -57,10 +57,10 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
           event.putString("failingUrl", failingUrl);
           context.getJSModule(RCTEventEmitter.class).receiveEvent(
               webView.getId(),
-              "onReceivedError",
+              // "onReceivedError",
+              "onLoadError",
               event
           );
-          sendEvent(webView, context, "onLoadError")
       }
 
       @Override
