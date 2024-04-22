@@ -14,7 +14,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
-  public static final String REACT_CLASS = "SmaAdWebViewManager";
+  public static final String REACT_CLASS = "SmaAdWebView";
   private String source;
   private String zoneId = "";
   private String userParameter = "";
