@@ -123,7 +123,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   }
 
   private void updateWebView() {
-    if (zoneId != null && userParameter != null && webViewInstance != null) {
+    if (zoneId != null && userParameter != null && webView != null) {
       showWebView();
     }
   }
