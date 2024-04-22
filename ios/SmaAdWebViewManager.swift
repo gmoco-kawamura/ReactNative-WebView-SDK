@@ -31,6 +31,7 @@ class SmaAdWebView : WKWebView, WKNavigationDelegate, WKScriptMessageHandler {
          }
     };
     """
+    private var isInitialized = false
     private var _onLoadFinished: RCTDirectEventBlock?
     private var _onLoadStarted: RCTDirectEventBlock?
     private var _onRedirectReceived: RCTDirectEventBlock?
@@ -63,9 +64,13 @@ class SmaAdWebView : WKWebView, WKNavigationDelegate, WKScriptMessageHandler {
         get { return _onClosePressed }
     }
 
-    // override func didSetProps(_ changedProps: [String]!) {
-    //     initializeWebView()
-    // }
+    override func didSetProps(_ changedProps: [String]!) {
+        if !isInitialized && !zoneId.isEmpty && !userParameter.isEmpty {
+            initializeWebView()
+            isInitialized = true
+        }
+        
+    }
 
     private func initializeWebView() {
         let baseUrl = "https://wall.smaad.net/wall/"
@@ -91,7 +96,6 @@ class SmaAdWebView : WKWebView, WKNavigationDelegate, WKScriptMessageHandler {
     }
 
     private func initialSmaadWebView(){
-        initializeWebView()
         addMessageHandler()
         updateUserAgent()
     }
