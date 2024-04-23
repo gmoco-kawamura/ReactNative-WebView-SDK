@@ -168,9 +168,18 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   @Override
   public Map getExportedCustomDirectEventTypeConstants() {
-    return MapBuilder.of(
-      "onLoadFinished", MapBuilder.of("registrationName", "onLoadFinish")
-    );
+    // return MapBuilder.of(
+    //   "onLoadFinished", MapBuilder.of("registrationName", "onLoadFinish")
+    // );
+    return MapBuilder.builder()
+      .put("onLoadFinished", MapBuilder.of("registrationName", "onLoadFinished"))
+      .put("onLoadStarted", MapBuilder.of("registrationName", "onLoadStarted"))
+      .put("onRedirectReceived", MapBuilder.of("registrationName", "onRedirectReceived"))
+      .put("onLoadError", MapBuilder.of("registrationName", "onLoadError"))
+      .put("onClosePressed", MapBuilder.of("registrationName", "onClosePressed"))
+      .put("onUpdateVisitedHistory", MapBuilder.of("registrationName", "onUpdateVisitedHistory"))
+      .put("onConsoleMessage", MapBuilder.of("registrationName", "onConsoleMessage"))
+      .build();
   }
 
 }
