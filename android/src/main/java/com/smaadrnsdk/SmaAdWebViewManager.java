@@ -15,6 +15,7 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.common.MapBuilder;
 
 import android.webkit.WebView;
+import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
 import android.webkit.PermissionRequest;
 import com.facebook.react.bridge.WritableMap;
@@ -25,7 +26,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 
 import java.util.Map;
-
 
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
@@ -41,19 +41,16 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   @Override
   public SmaAdWebView createViewInstance(ThemedReactContext context) {
-    // webView = new SmaAdWebView(context);
-    // webView.setWebViewClient(new WebViewClient() {
-    //   public void onPageFinished(String url) {
-    //     sendEvent(context, "onPageFinished", url);
-    //   }
-
-    //   public void onPageStarted(String url) {
-    //     sendEvent(context, "onPageStarted", url);
-    //   }
-    // });
-
     Activity activity = getActivityFromContext(context);
     webView = new SmaAdWebView(context);
+
+    // WebViewの設定
+    WebSettings settings = webView.getSettings();
+    settings.setJavaScriptEnabled(true);  // JavaScriptを有効化
+
+    // JavaScriptインターフェースを追加
+    webView.addJavascriptInterface(new JavaScriptInterface(reactContext, reactContext), "Android");
+
     webView.setListener(activity, new SmaAdWebView.Listener(){
       @Override
       public void onLoadStart(String url) {
@@ -168,9 +165,6 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   @Override
   public Map getExportedCustomDirectEventTypeConstants() {
-    // return MapBuilder.of(
-    //   "onLoadFinished", MapBuilder.of("registrationName", "onLoadFinish")
-    // );
     return MapBuilder.builder()
       .put("onLoadFinished", MapBuilder.of("registrationName", "onLoadFinished"))
       .put("onLoadStarted", MapBuilder.of("registrationName", "onLoadStarted"))
