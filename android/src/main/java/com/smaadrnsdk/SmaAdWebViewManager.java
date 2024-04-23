@@ -12,7 +12,7 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
-
+import com.facebook.react.common.MapBuilder;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
