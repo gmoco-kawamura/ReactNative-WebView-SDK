@@ -105,6 +105,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
         );
       }
     });
+    updateWebView();
     return webView;
   }
 
@@ -119,7 +120,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public void setUserParameter(SmaAdWebView view, String userParameter) {
     this.userParameter = userParameter;
     // ShowWebView(view);
-    updateWebView();
+    // updateWebView();
   }
 
   private void updateWebView() {
