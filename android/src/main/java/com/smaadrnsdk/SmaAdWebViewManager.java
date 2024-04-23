@@ -55,8 +55,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     webView.setListener(activity, new SmaAdWebView.Listener(){
       @Override
       public void onLoadStart(String url) {
-        // sendEvent(context, "onLoadStarted", url);
-        sendEvent(context, "onPageStarted", url);
+        sendEvent(context, "onLoadStarted", url);
       }
 
       @Override
@@ -71,8 +70,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
       @Override
       public void onLoadStop(String url) {
-        // sendEvent(context, "onLoadFinished", url);
-        sendEvent(context, "onPageFinished", url);
+        sendEvent(context, "onLoadFinished", url);
       }
 
       @Override
