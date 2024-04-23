@@ -92,18 +92,18 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
       //     );
       // }
 
-      // @Override
-      // public void onConsoleMessage(String message, int lineNumber, String sourceID) {
-      //     WritableMap event = Arguments.createMap();
-      //     event.putString("message", message);
-      //     event.putInt("lineNumber", lineNumber);
-      //     event.putString("sourceID", sourceID);
-      //     context.getJSModule(RCTEventEmitter.class).receiveEvent(
-      //         webView.getId(),
-      //         "onConsoleMessage",
-      //         event
-      //     );
-      // }
+      @Override
+      public void onConsoleMessage(String message, int lineNumber, String sourceID) {
+        WritableMap event = Arguments.createMap();
+        event.putString("message", message);
+        event.putInt("lineNumber", lineNumber);
+        event.putString("sourceID", sourceID);
+        context.getJSModule(RCTEventEmitter.class).receiveEvent(
+          webView.getId(),
+          "onConsoleMessage",
+          event
+        );
+      }
     });
     return webView;
   }
