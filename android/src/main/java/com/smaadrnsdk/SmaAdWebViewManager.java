@@ -30,7 +30,6 @@ import java.util.Map;
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public static final String REACT_CLASS = "SmaAdWebView";
-  public JavaScriptBridgeInterface javaScriptBridgeInterface;
   private String zoneId = null;
   private String userParameter = null;
   private SmaAdWebView webView = null;
@@ -117,7 +116,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     };
 
     // JavaScriptインターフェースを追加
-    webView.addJavascriptInterface(new JavaScriptBridegeInterface(listener, context), "Android");
+    webView.addJavascriptInterface(new JavaScriptBridgeInterface(listener, context), "Android");
 
     webView.setListener(activity, listener);
     updateWebView();
