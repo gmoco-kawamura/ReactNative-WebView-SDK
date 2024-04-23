@@ -30,6 +30,7 @@ import java.util.Map;
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public static final String REACT_CLASS = "SmaAdWebView";
+  public JavaScriptBridgeInterface javaScriptBridgeInterface;
   private String zoneId = null;
   private String userParameter = null;
   private SmaAdWebView webView = null;
