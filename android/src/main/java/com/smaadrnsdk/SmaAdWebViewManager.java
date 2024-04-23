@@ -48,10 +48,8 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     WebSettings settings = webView.getSettings();
     settings.setJavaScriptEnabled(true);  // JavaScriptを有効化
 
-    // JavaScriptインターフェースを追加
-    webView.addJavascriptInterface(new JavaScriptInterface(reactContext, reactContext), "Android");
-
-    webView.setListener(activity, new SmaAdWebView.Listener(){
+    // webView.setListener(activity, new SmaAdWebView.Listener(){
+    SmaAdWebView.Listener listener = new SmaAdWebView.Listener() {
       @Override
       public void onLoadStart(String url) {
         sendEvent(context, "onLoadStarted", url);
@@ -116,6 +114,11 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
         );
       }
     });
+
+    // JavaScriptインターフェースを追加
+    webView.addJavascriptInterface(new JavaScriptBridegeInterface(listener, context), "Android");
+
+    webView.setListener(activity, listener)
     updateWebView();
     return webView;
   }
