@@ -1200,6 +1200,7 @@ public class SmaAdWebView extends WebView {
     /**
      * @deprecated use `isPermittedUrl` instead
      */
+    @Deprecated
     protected boolean isHostnameAllowed(final String url) {
         return isPermittedUrl(url);
     }

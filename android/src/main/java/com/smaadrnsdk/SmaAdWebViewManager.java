@@ -63,16 +63,16 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
       @Override
       public void onReceivedError(int errorCode, String description, String failingUrl) {
-          WritableMap event = Arguments.createMap();
-          event.putInt("errorCode", errorCode);
-          event.putString("description", description);
-          event.putString("failingUrl", failingUrl);
-          context.getJSModule(RCTEventEmitter.class).receiveEvent(
-              webView.getId(),
-              // "onReceivedError",
-              "onLoadError",
-              event
-          );
+        WritableMap event = Arguments.createMap();
+        event.putInt("errorCode", errorCode);
+        event.putString("description", description);
+        event.putString("failingUrl", failingUrl);
+        context.getJSModule(RCTEventEmitter.class).receiveEvent(
+          webView.getId(),
+          // "onReceivedError",
+          "onLoadError",
+          event
+        );
       }
 
       // @Override
