@@ -112,7 +112,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public void setZoneId(SmaAdWebView view, String zoneId) {
     this.zoneId = zoneId;
     // ShowWebView(view);
-    updateWebView();
+    // updateWebView();
   }
 
   @ReactProp(name = "userParameter")
