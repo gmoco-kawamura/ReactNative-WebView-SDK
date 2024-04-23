@@ -44,6 +44,10 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
       public void onPageFinished(String url) {
         sendEvent(context, "onPageFinished", url);
       }
+
+      public void onPageStarted(String url) {
+        sendEvent(context, "onPageStarted", url);
+      }
     });
 
     // Activity activity = getActivityFromContext(context);
