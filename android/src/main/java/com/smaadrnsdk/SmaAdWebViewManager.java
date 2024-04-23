@@ -169,7 +169,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   @Override
   public Map getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.of(
-      "onPageFinished", MapBuilder.of("registrationName", "onPageFinish")
+      "onLoadFinished", MapBuilder.of("registrationName", "onLoadFinish")
     );
   }
 
