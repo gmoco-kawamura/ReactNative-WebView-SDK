@@ -38,73 +38,80 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   @Override
   public SmaAdWebView createViewInstance(ThemedReactContext context) {
-    Activity activity = getActivityFromContext(context);
     webView = new SmaAdWebView(context);
-    webView.setListener(activity, new SmaAdWebView.Listener(){
-      @Override
-      public void onPageStarted(String url) {
-        sendEvent(context, "onLoadStarted", url);
+    webView.setWebViewClient(new WebViewClient()) {
+      public void onPageFinished(String url) {
+        sendEvent(context, "onPageFinished", url);
       }
+    }
 
-      @Override
-      public void onPermissionRequest(PermissionRequest request) {
-          // Handle permission request, may need additional implementation
-      }
+    // Activity activity = getActivityFromContext(context);
+    // webView = new SmaAdWebView(context);
+    // webView.setListener(activity, new SmaAdWebView.Listener(){
+    //   @Override
+    //   public void onLoadStart(String url) {
+    //     sendEvent(context, "onLoadStarted", url);
+    //   }
 
-      @Override
-      public void shouldOverrideUrlLoading(String url) {
-        sendEvent(context, "onRedirectReceived", url);
-      }
+    //   @Override
+    //   public void onPermissionRequest(PermissionRequest request) {
+    //       // Handle permission request, may need additional implementation
+    //   }
 
-      @Override
-      public void onLoadStop(String url) {
-        sendEvent(context, "onLoadFinished", url);
-      }
+    //   @Override
+    //   public void shouldOverrideUrlLoading(String url) {
+    //     sendEvent(context, "onRedirectReceived", url);
+    //   }
 
-      @Override
-      public void onReceivedError(int errorCode, String description, String failingUrl) {
-        WritableMap event = Arguments.createMap();
-        event.putInt("errorCode", errorCode);
-        event.putString("description", description);
-        event.putString("failingUrl", failingUrl);
-        context.getJSModule(RCTEventEmitter.class).receiveEvent(
-          webView.getId(),
-          // "onReceivedError",
-          "onLoadError",
-          event
-        );
-      }
+    //   @Override
+    //   public void onLoadStop(String url) {
+    //     sendEvent(context, "onLoadFinished", url);
+    //   }
 
-      @Override
-      public void onWebViewClosed() {
-        sendEvent(context, "onClosePressed", null);
-      }
+    //   @Override
+    //   public void onReceivedError(int errorCode, String description, String failingUrl) {
+    //     WritableMap event = Arguments.createMap();
+    //     event.putInt("errorCode", errorCode);
+    //     event.putString("description", description);
+    //     event.putString("failingUrl", failingUrl);
+    //     context.getJSModule(RCTEventEmitter.class).receiveEvent(
+    //       webView.getId(),
+    //       // "onReceivedError",
+    //       "onLoadError",
+    //       event
+    //     );
+    //   }
 
-      @Override
-      public void onUpdateVisitedHistory(WebView view, String url, boolean isReload) {
-          WritableMap event = Arguments.createMap();
-          event.putString("url", url);
-          event.putBoolean("isReload", isReload);
-          context.getJSModule(RCTEventEmitter.class).receiveEvent(
-              webView.getId(),
-              "onUpdateVisitedHistory",
-              event
-          );
-      }
+    //   @Override
+    //   public void onWebViewClosed() {
+    //     sendEvent(context, "onClosePressed", null);
+    //   }
 
-      @Override
-      public void onConsoleMessage(String message, int lineNumber, String sourceID) {
-        WritableMap event = Arguments.createMap();
-        event.putString("message", message);
-        event.putInt("lineNumber", lineNumber);
-        event.putString("sourceID", sourceID);
-        context.getJSModule(RCTEventEmitter.class).receiveEvent(
-          webView.getId(),
-          "onConsoleMessage",
-          event
-        );
-      }
-    });
+    //   @Override
+    //   public void onUpdateVisitedHistory(WebView view, String url, boolean isReload) {
+    //       WritableMap event = Arguments.createMap();
+    //       event.putString("url", url);
+    //       event.putBoolean("isReload", isReload);
+    //       context.getJSModule(RCTEventEmitter.class).receiveEvent(
+    //           webView.getId(),
+    //           "onUpdateVisitedHistory",
+    //           event
+    //       );
+    //   }
+
+    //   @Override
+    //   public void onConsoleMessage(String message, int lineNumber, String sourceID) {
+    //     WritableMap event = Arguments.createMap();
+    //     event.putString("message", message);
+    //     event.putInt("lineNumber", lineNumber);
+    //     event.putString("sourceID", sourceID);
+    //     context.getJSModule(RCTEventEmitter.class).receiveEvent(
+    //       webView.getId(),
+    //       "onConsoleMessage",
+    //       event
+    //     );
+    //   }
+    // });
     updateWebView();
     return webView;
   }
