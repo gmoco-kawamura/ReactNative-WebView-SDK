@@ -39,11 +39,11 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   @Override
   public SmaAdWebView createViewInstance(ThemedReactContext context) {
     webView = new SmaAdWebView(context);
-    webView.setWebViewClient(new WebViewClient()) {
+    webView.setWebViewClient(new WebViewClient() {
       public void onPageFinished(String url) {
         sendEvent(context, "onPageFinished", url);
       }
-    }
+    });
 
     // Activity activity = getActivityFromContext(context);
     // webView = new SmaAdWebView(context);
