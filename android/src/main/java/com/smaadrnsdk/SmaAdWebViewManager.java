@@ -41,25 +41,25 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     Activity activity = getActivityFromContext(context);
     webView = new SmaAdWebView(context);
     webView.setListener(activity, new SmaAdWebView.Listener(){
-      // @Override
-      // public void onLoadStart(String url) {
-      //   sendEvent(context, "onLoadStarted", url);
-      // }
+      @Override
+      public void onLoadStart(String url) {
+        sendEvent(context, "onLoadStarted", url);
+      }
 
-      // @Override
-      // public void onPermissionRequest(PermissionRequest request) {
-      //     // Handle permission request, may need additional implementation
-      // }
+      @Override
+      public void onPermissionRequest(PermissionRequest request) {
+          // Handle permission request, may need additional implementation
+      }
 
-      // @Override
-      // public void shouldOverrideUrlLoading(String url) {
-      //   sendEvent(context, "onRedirectReceived", url);
-      // }
+      @Override
+      public void shouldOverrideUrlLoading(String url) {
+        sendEvent(context, "onRedirectReceived", url);
+      }
 
-      // @Override
-      // public void onLoadStop(String url) {
-      //   sendEvent(context, "onLoadFinished", url);
-      // }
+      @Override
+      public void onLoadStop(String url) {
+        sendEvent(context, "onLoadFinished", url);
+      }
 
       @Override
       public void onReceivedError(int errorCode, String description, String failingUrl) {
@@ -75,22 +75,22 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
         );
       }
 
-      // @Override
-      // public void onWebViewClosed() {
-      //     sendEvent(context, "onClosePressed", null);
-      // }
+      @Override
+      public void onWebViewClosed() {
+        sendEvent(context, "onClosePressed", null);
+      }
 
-      // @Override
-      // public void onUpdateVisitedHistory(WebView view, String url, boolean isReload) {
-      //     WritableMap event = Arguments.createMap();
-      //     event.putString("url", url);
-      //     event.putBoolean("isReload", isReload);
-      //     context.getJSModule(RCTEventEmitter.class).receiveEvent(
-      //         webView.getId(),
-      //         "onUpdateVisitedHistory",
-      //         event
-      //     );
-      // }
+      @Override
+      public void onUpdateVisitedHistory(WebView view, String url, boolean isReload) {
+          WritableMap event = Arguments.createMap();
+          event.putString("url", url);
+          event.putBoolean("isReload", isReload);
+          context.getJSModule(RCTEventEmitter.class).receiveEvent(
+              webView.getId(),
+              "onUpdateVisitedHistory",
+              event
+          );
+      }
 
       @Override
       public void onConsoleMessage(String message, int lineNumber, String sourceID) {
