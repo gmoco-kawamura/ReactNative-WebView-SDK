@@ -42,7 +42,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     webView = new SmaAdWebView(context);
     webView.setListener(activity, new SmaAdWebView.Listener(){
       @Override
-      public void onLoadStart(String url) {
+      public void onPageStarted(String url) {
         sendEvent(context, "onLoadStarted", url);
       }
 
@@ -112,25 +112,23 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   @ReactProp(name = "zoneId")
   public void setZoneId(SmaAdWebView view, String zoneId) {
     this.zoneId = zoneId;
-    // updateWebView();
+    updateWebView();
   }
 
   @ReactProp(name = "userParameter")
   public void setUserParameter(SmaAdWebView view, String userParameter) {
     this.userParameter = userParameter;
-    // updateWebView();
+    updateWebView();
   }
 
   private void updateWebView() {
-    showWebView();
-    // if (this.zoneId != null && this.userParameter != null && webView != null) {
-    //   showWebView();
-    // }
+    if (this.zoneId != null && this.userParameter != null && webView != null) {
+      showWebView();
+    }
   }
 
   public void showWebView(){
-    // String url = String.format("https://wall.smaad.net/wall/%s?u=%s", this.zoneId, this.userParameter);
-    String url = String.format("https://wall.smaad.net/wall/%s?u=%s", "770558503", "test");
+    String url = String.format("https://wall.smaad.net/wall/%s?u=%s", this.zoneId, this.userParameter);
     webView.loadUrl(url);
   }
 
