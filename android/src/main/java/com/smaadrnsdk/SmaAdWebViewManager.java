@@ -15,6 +15,7 @@ import com.facebook.react.bridge.ReactContext;
 
 
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.webkit.PermissionRequest;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.Arguments;
