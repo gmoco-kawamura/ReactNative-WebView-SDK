@@ -163,6 +163,14 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     }
     return null;
   }
+
+  @Override
+  public Map getExportedCustomDirectEventTypeConstants() {
+    return MapBuilder.of(
+      "onPageFinished", MapBuilder.of("registrationName", "onPageFinish")
+    );
+  }
+
 }
 
 // public class SmaAdWebViewManager extends SimpleViewManager<View> {
