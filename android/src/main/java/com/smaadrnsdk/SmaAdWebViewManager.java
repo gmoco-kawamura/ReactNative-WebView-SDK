@@ -118,7 +118,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     // JavaScriptインターフェースを追加
     webView.addJavascriptInterface(new JavaScriptBridegeInterface(listener, context), "Android");
 
-    webView.setListener(activity, listener)
+    webView.setListener(activity, listener);
     updateWebView();
     return webView;
   }
