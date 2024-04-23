@@ -113,7 +113,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
           event
         );
       }
-    });
+    };
 
     // JavaScriptインターフェースを追加
     webView.addJavascriptInterface(new JavaScriptBridegeInterface(listener, context), "Android");
