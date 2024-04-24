@@ -53,6 +53,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     SmaAdWebView.Listener listener = new SmaAdWebView.Listener() {
       @Override
       public void onLoadStart(String url) {
+        Log.d(LOG_TAG, "onLoadStart url:" + url); // Intent作成前ログ
         sendEvent(context, "onLoadStarted", url);
       }
 
@@ -149,8 +150,8 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   private void sendEvent(ThemedReactContext context, String eventName, String eventData) {
     WritableMap params = Arguments.createMap();
-    Log.d("EventData", eventData);
-    Log.d("Params", params.toString());
+    // Log.d("EventData", eventData);
+    // Log.d("Params", params.toString());
     params.putString("data", eventData);
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
         webView.getId(),
