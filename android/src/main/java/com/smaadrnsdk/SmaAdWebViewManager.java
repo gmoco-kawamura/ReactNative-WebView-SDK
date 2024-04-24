@@ -53,7 +53,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     SmaAdWebView.Listener listener = new SmaAdWebView.Listener() {
       @Override
       public void onLoadStart(String url) {
-        Log.d(LOG_TAG, "onLoadStart url:" + url); // Intent作成前ログ
+        Log.d("onLoadStart url:" + url); // Intent作成前ログ
         sendEvent(context, "onLoadStarted", url);
       }
 
