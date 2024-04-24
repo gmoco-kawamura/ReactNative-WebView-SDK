@@ -34,6 +34,11 @@ public class JavaScriptBridgeInterface {
                 @Override
                 public void run() {
                     try {
+                        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                            mContext.startActivity(intent);
+                        } else {
+                            Log.e(LOG_TAG, "No Activity found to handle intent for: " + url);
+                        }                        
                         // URLを解析し、Intentを作成してブラウザを起動
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                         mContext.startActivity(intent);
