@@ -27,6 +27,7 @@ public class JavaScriptBridgeInterface {
 
     @JavascriptInterface
     public void launchURL(final String url){
+        Log.d(LOG_TAG, "Attempting to launch URL: " + url); // デバッグログを追加
         // UIスレッドで実行する必要があるため、runOnUiThreadを使用
         if (mContext instanceof Activity) {
             ((Activity) mContext).runOnUiThread(new Runnable() {
