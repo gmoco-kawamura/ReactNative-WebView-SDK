@@ -34,12 +34,12 @@ public class JavaScriptBridgeInterface {
                 @Override
                 public void run() {
                     try {
-                        Log.d(LOG_TAG, "Creating intent to launch URL."); // Intent作成前ログ
+                        // Log.d(LOG_TAG, "Creating intent to launch URL."); // Intent作成前ログ
                         // URLを解析し、Intentを作成してブラウザを起動
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                        Log.d(LOG_TAG, "Intent created: " + intent.toString()); // Intent作成後ログ
+                        // Log.d(LOG_TAG, "Intent created: " + intent.toString()); // Intent作成後ログ
                         mContext.startActivity(intent);
-                        Log.d(LOG_TAG, "Intent started successfully."); // Intent起動成功ログ
+                        // Log.d(LOG_TAG, "Intent started successfully."); // Intent起動成功ログ
                     } catch (Exception e) {
                         Log.e(LOG_TAG, "Could not launch external browser for: " + url, e);
                     }

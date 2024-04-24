@@ -148,6 +148,8 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   private void sendEvent(ThemedReactContext context, String eventName, String eventData) {
     WritableMap params = Arguments.createMap();
+    Log.d("EventData", eventData);
+    Log.d("Params", params.toString());
     params.putString("data", eventData);
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
         webView.getId(),
@@ -180,24 +182,3 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   }
 
 }
-
-// public class SmaAdWebViewManager extends SimpleViewManager<View> {
-//   public static final String REACT_CLASS = "SmaAdWebView";
-
-//   @Override
-//   @NonNull
-//   public String getName() {
-//     return REACT_CLASS;
-//   }
-
-//   @Override
-//   @NonNull
-//   public View createViewInstance(ThemedReactContext reactContext) {
-//     return new View(reactContext);
-//   }
-
-//   @ReactProp(name = "color")
-//   public void setColor(View view, String color) {
-//     view.setBackgroundColor(Color.parseColor(color));
-//   }
-// }
