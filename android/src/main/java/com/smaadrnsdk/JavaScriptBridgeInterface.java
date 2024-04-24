@@ -33,10 +33,10 @@ public class JavaScriptBridgeInterface {
             ((Activity) mContext).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    try {                      
+                    try {
                         // URLを解析し、Intentを作成してブラウザを起動
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Log.d(LOG_TAG, "Launching URL with intent: " + intent.toString());
                         mContext.startActivity(intent);
                     } catch (Exception e) {
                         Log.e(LOG_TAG, "Could not launch external browser for: " + url, e);
