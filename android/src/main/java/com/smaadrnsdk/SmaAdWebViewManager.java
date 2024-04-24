@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 
 import java.util.Map;
+import android.util.Log;
 
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
