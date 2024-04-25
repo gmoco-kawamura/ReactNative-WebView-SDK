@@ -26,8 +26,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 
 import java.util.Map;
-import android.util.Log;
-
 
 public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
   public static final String REACT_CLASS = "SmaAdWebView";
@@ -53,7 +51,6 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
     SmaAdWebView.Listener listener = new SmaAdWebView.Listener() {
       @Override
       public void onLoadStart(String url) {
-        Log.d("onLoadStart url:" + url); // Intent作成前ログ
         sendEvent(context, "onLoadStarted", url);
       }
 
