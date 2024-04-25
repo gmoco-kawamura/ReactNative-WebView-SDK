@@ -150,9 +150,7 @@ public class SmaAdWebViewManager extends SimpleViewManager<SmaAdWebView> {
 
   private void sendEvent(ThemedReactContext context, String eventName, String eventData) {
     WritableMap params = Arguments.createMap();
-    // Log.d("EventData", eventData);
-    // Log.d("Params", params.toString());
-    params.putString("data", eventData);
+    params.putString("url", eventData);
     context.getJSModule(RCTEventEmitter.class).receiveEvent(
         webView.getId(),
         eventName,
